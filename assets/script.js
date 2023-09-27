@@ -16,22 +16,25 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-// let flecheDroite = 0
-// let monBoutonDroit = 0
 
-// monBoutonDroit = document.querySelector(".arrow .arrow_right");
-// monBoutonDroit.addEventListener("click", () =>{
-// 	console.log("J'ai slide à droite")
-// })
-
-
-// flecheDroite = document.getElementById("#banner");
-// flecheDroite.addEventListener("click", () =>{
-// 	console.log("J'ai click")
-// })
-
-const button = document.querySelector('button')
-
-button.addEventListener("click", function() {
-	console.log("Je click")
+let flecheDroite = document.querySelector(".arrow_right")
+flecheDroite.addEventListener("click", () => {
+	console.log("J'ai glissé à droite")
 })
+
+let flecheGauche = document.querySelector(".arrow_left")
+flecheGauche.addEventListener("click", () => {
+	console.log("J'ai glissé à gauche")
+})
+
+
+
+let dots = document.querySelector(".dots")
+
+for(i = 0; i < slides.length; i = i+1) {
+
+let dot = document.createElement("div")
+dot.classList.add("dot")
+dots.append(dot)
+	
+}
