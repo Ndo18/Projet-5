@@ -17,12 +17,24 @@ const slides = [
 	}
 ]
 
-let flecheDroite = document.querySelector(".arrow_right")
-flecheDroite.addEventListener("click", () => {
-	console.log("J'ai glissé à droite")
-})
+console.log(slides[0])
 
 let flecheGauche = document.querySelector(".arrow_left")
+let flecheDroite = document.querySelector(".arrow_right")
+let bannerImg = document.querySelector("banner-img")
+
+
+//  let slidesImg = slides[]
+
+ //* VOIR COMMENT APPELER LES VALEURS DU TABLEAU
+
+flecheDroite.addEventListener("click", () => {
+	for(let i = [0]; i < slides.length; i = i+1)
+	bannerImg = slides[i]
+	// // bannerImg = slides[i]
+	console.log(bannerImg)
+})
+
 flecheGauche.addEventListener("click", () => {
 	console.log("J'ai glissé à gauche")
 })
@@ -33,7 +45,7 @@ let dots = document.querySelector(".dots")
 
 for(i = 0; i < slides.length; i = i+1) {
 
-let dot = document.createElement("div")
+let dot = document.createElement("span")
 dot.classList.add("dot")
 dots.append(dot)
 	
