@@ -1,52 +1,77 @@
+const baseUrl = "./assets/images/slideshow/"
 const slides = [
 	{
-		"image":"slide1.jpg",
-		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
+		imageUrl:"slide1.jpg",
+		tagLine:"Impressions tous formats",
+		details:"en boutique et en ligne",
 	},
 	{
-		"image":"slide2.jpg",
-		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
+		imageUrl:"slide2.jpg",
+		tagLine:"Tirages haute définition grand format",
+		details:"pour vos bureaux et events",
 	},
 	{
-		"image":"slide3.jpg",
-		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
+		imageUrl:"slide3.jpg",
+		tagLine:"Grand choix de couleurs",
+		details:"de CMJN aux pantones",
 	},
 	{
-		"image":"slide4.png",
-		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
+		imageUrl:"slide4.png",
+		tagLine:"Autocollants",
+		details:"avec découpe laser sur mesure",
 	}
 ]
 
-console.log(slides[0])
+let nbSlide = 0
 
-let flecheGauche = document.querySelector(".arrow_left")
-let flecheDroite = document.querySelector(".arrow_right")
-let bannerImg = document.querySelector("banner-img")
+const flecheGauche = document.querySelector(".arrow_left")
+const flecheDroite = document.querySelector(".arrow_right")
+const bannerImg = document.querySelector(".banner-img")
+const slideTitle = document.getElementById("slideTitle")
+const slideDescription = document.getElementById("slideDescription")
 
 
-//  let slidesImg = slides[]
-
- //* VOIR COMMENT APPELER LES VALEURS DU TABLEAU
-
-flecheDroite.addEventListener("click", () => {
-	for(let i = [0]; i < slides.length; i = i+1)
-	bannerImg = slides[i]
-	// // bannerImg = slides[i]
-	console.log(bannerImg)
-})
+	 flecheDroite.addEventListener("click", () => {
+		nbSlide = (nbSlide +1) % slides.length;
+		showSlide(nbSlide)
+	 })
+	
+	function showSlide(index){
+		const slide = slides[index]
+		if(slide) {
+			const imageUrl = baseUrl + slide.imageUrl
+			const tagLine = slide.tagLine
+			const details = slide.details
+			
+			bannerImg.src = imageUrl
+			slideTitle.textContent = tagLine
+			slideDescription.textContent = details
+			slideTitle.appendChild(slideDescription)
+		} 
+		
+	}
 
 flecheGauche.addEventListener("click", () => {
-	console.log("J'ai glissé à gauche")
+	nbSlide = (nbSlide - 1 + slides.length) % slides.length;
+		showSlide(nbSlide)
 })
 
 
 
-let dots = document.querySelector(".dots")
 
-for(i = 0; i < slides.length; i = i+1) {
+/*BULLET POINT*/
 
-let dot = document.createElement("span")
-dot.classList.add("dot")
-dots.append(dot)
-	
+let dots = document.querySelector(".dots");
+
+for (let i = 0; i < slides.length; i++) {
+    let dot = document.createElement("span");
+    dot.classList.add("dot");
+    
+    // Ajoutez un gestionnaire d'événements pour le clic sur le bullet point
+    dot.addEventListener("click", ()=> {
+        nbSlide = i;
+        showSlide(nbSlide);
+    });
+
+    dots.appendChild(dot);
 }
