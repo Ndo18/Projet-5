@@ -34,6 +34,7 @@ const slideDescription = document.getElementById("slideDescription")
 	 flecheDroite.addEventListener("click", () => {
 		nbSlide = (nbSlide +1) % slides.length;
 		showSlide(nbSlide)
+		console.log(nbSlide)
 	 })
 	
 	function showSlide(index){
@@ -61,17 +62,16 @@ flecheGauche.addEventListener("click", () => {
 
 /*BULLET POINT*/
 
-let dots = document.querySelector(".dots");
+let dots = document.querySelector(".dots")
 
 for (let i = 0; i < slides.length; i++) {
-    let dot = document.createElement("span");
-    dot.classList.add("dot");
+    let dot = document.createElement("span")
+    dot.classList.add("dot")
     
-    // Ajoutez un gestionnaire d'événements pour le clic sur le bullet point
     dot.addEventListener("click", ()=> {
-        nbSlide = i;
-        showSlide(nbSlide);
-    });
+        nbSlide = i
+        showSlide(nbSlide)
+    })
 
-    dots.appendChild(dot);
+    dots.appendChild(dot)
 }
