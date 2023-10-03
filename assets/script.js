@@ -24,6 +24,7 @@ const slides = [
 
 let nbSlide = 0
 
+
 const flecheGauche = document.querySelector(".arrow_left")
 const flecheDroite = document.querySelector(".arrow_right")
 const bannerImg = document.querySelector(".banner-img")
@@ -34,7 +35,7 @@ const slideDescription = document.getElementById("slideDescription")
 	 flecheDroite.addEventListener("click", () => {
 		nbSlide = (nbSlide +1) % slides.length;
 		showSlide(nbSlide)
-		console.log(nbSlide)
+		updateDots(nbSlide)
 	 })
 	
 	function showSlide(index){
@@ -52,26 +53,38 @@ const slideDescription = document.getElementById("slideDescription")
 		
 	}
 
-flecheGauche.addEventListener("click", () => {
-	nbSlide = (nbSlide - 1 + slides.length) % slides.length;
+	function updateDots(nbSlide) {
+		const dots = document.querySelectorAll(".dot")
+	
+		for (let i = 0; i < slides.length; i++) {
+			dots[i].classList.remove("dot_selected")
+		}
+
+		dots[nbSlide].classList.add("dot_selected")
+	}
+	
+	flecheGauche.addEventListener("click", () => {
+		nbSlide = (nbSlide - 1 + slides.length) % slides.length;
 		showSlide(nbSlide)
-})
+		updateDots(nbSlide)
+	})
+	
 
+	/*BULLET POINT*/
+	
+	let dots = document.querySelector(".dots")
+	
+	for (let i = 0; i < slides.length; i++) {
+		let dot = document.createElement("span")
+		dot.classList.add("dot")
+		
+		dot.addEventListener("click", ()=> {
+			nbSlide = i
+			showSlide(nbSlide)
+			updateDots(nbSlide)
+		})
+		
+		dots.appendChild(dot)
+	}
 
-
-
-/*BULLET POINT*/
-
-let dots = document.querySelector(".dots")
-
-for (let i = 0; i < slides.length; i++) {
-    let dot = document.createElement("span")
-    dot.classList.add("dot")
-    
-    dot.addEventListener("click", ()=> {
-        nbSlide = i
-        showSlide(nbSlide)
-    })
-
-    dots.appendChild(dot)
-}
+	updateDots(0)
